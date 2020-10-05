@@ -68,11 +68,12 @@ function screenOptions(route, color) {
             iconName = "magnify";
         break;
 
-        case "account":
-            iconName = "home-outline";
-        break;
+        // case "account":
+        //     iconName = "home-outline";
+        // break;
     
         default:
+            iconName = "home-outline";
         break;
     }
 
