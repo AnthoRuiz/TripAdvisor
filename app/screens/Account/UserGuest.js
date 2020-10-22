@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, View, ScrollView, Text, Image } from "react-native";
 import { Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import { log } from "react-native-reanimated";
 
 export default function UserGuest() {
   const navigation = useNavigation();
@@ -25,7 +24,7 @@ export default function UserGuest() {
           title="Ver tu perfil"
           buttonStyle={styles.btnStyle}
           containerStyle={styles.btnContainer}
-          onPress={() => console.log("Click boton")}
+          onPress={() => navigation.navigate("login")}
         />
       </View>
     </ScrollView>
