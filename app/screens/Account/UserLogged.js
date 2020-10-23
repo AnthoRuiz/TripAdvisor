@@ -6,6 +6,7 @@ import LoginForm from "../../components/Account/LoginForm";
 import * as firebase from "firebase";
 import Loading from "../../components/Loading";
 import InfoUser from "../../components/Account/InfoUser";
+import AccountOptions from "../../components/Account/AccountOptions";
 
 export default function UserLogged() {
 
@@ -23,9 +24,18 @@ export default function UserLogged() {
 
     return (
         <View style={styles.viewUserInfo}>
-            {userInfo && <InfoUser userInfo={userInfo} toastRef={toastRef}/>}
+            {userInfo && <InfoUser 
+                            userInfo={userInfo} 
+                            toastRef={toastRef}
+                            setLoading={setLoading}
+                            setLoadingText={setLoadingText}
+                        />}
 
-            <Text> AccountOptions... </Text>
+            <AccountOptions 
+                userInfo={userInfo}
+                toastRef={toastRef}
+                />
+
             <Button 
                 title="Cerrar Sesion" 
                 buttonStyle={styles.btnCloseSession}
