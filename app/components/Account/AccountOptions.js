@@ -1,16 +1,48 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import React, {useState} from "react";
+import { View, StyleSheet, Text } from "react-native";
 import { ListItem } from "react-native-elements";
 import { map } from "lodash";
+import Modal from "../Modal";
+import ChangeDisplayNameForm from "./ChangeDisplayNameForm";
 
 export default function AccountOptions(props) {
-  const selectedComponent = (key) => {
-    console.log(key);
-  }
-  
-  const {userInfo, toastRef} = props;
-  const menuOpstions = generateOpstions(selectedComponent);
 
+  const {userInfo, toastRef, setReloadUserInfo } = props;
+  const [showModal, setShowModal] = useState(false);
+  const [renderComponent, setRenderComponent] = useState(null);
+
+  const selectedComponent = (key) => {
+    switch (key) {
+      case "displayName":
+        setRenderComponent(
+          <ChangeDisplayNameForm
+            displayName={userInfo.displayName}
+            setShowModal={setShowModal}
+            toastRef={toastRef}
+            setReloadUserInfo={setReloadUserInfo}
+          />
+        );
+        setShowModal(true);
+      break;
+
+      case "email":
+        setRenderComponent(<Text>Cambiando email</Text>);
+        setShowModal(true);
+      break;
+
+      case "password":
+        setRenderComponent(<Text>Cambiando password</Text>);
+        setShowModal(true);
+      break;
+    
+      default:
+        setRenderComponent(null);
+        setShowModal(false);
+      break;
+    }
+  }
+
+  const menuOpstions = generateOpstions(selectedComponent);
 
   return (
 
@@ -33,6 +65,13 @@ export default function AccountOptions(props) {
           onPress={menu.onPress}
         />
       ))}
+
+      {renderComponent && (
+        <Modal isVisible={showModal} setIsVisible={setShowModal}>
+          {renderComponent}
+        </Modal>
+      )}
+
     </View>
 
   );
