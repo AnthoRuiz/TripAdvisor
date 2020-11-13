@@ -20,6 +20,12 @@
       "supportsTablet": false
     },
     "android":{
+      "package": "com.jakaboy.tenedoresTest",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBxP8NbfYc9L6nl6OdNzWhz4toFyKZdjy8"
+        }
+      },
       "permissions": [
         "CAMERA_ROLL",
         "READ_EXTERNAL_STORAGE",
